@@ -4,10 +4,10 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-9">
-          <Inventory :items="items" ></Inventory>
+          <Inventory @newItemAdded="addCartItem" :items="items" ></Inventory>
       </div>
       <div class="col-sm-3">
-        <cart></cart>
+        <cart :items="cart" ></cart>
       </div>
     </div>
   </div>
@@ -29,11 +29,22 @@ export default {
   },
   data(){
     return {
-     items: []
+     items: [],
+     cart: [{
+       id: 1,
+       title: 'test',
+       price: 10.50,
+       photo: "http://dummyimage.com/195x152.png/ff4444/ffffff"
+     }]
     }
   },
   mounted(){
   this.items = data
+  },
+  methods: {
+    addCartItem(item){
+      this.cart.push(item)
+    }
   }
  }
 </script>
