@@ -7,7 +7,7 @@
           <Inventory @newItemAdded="addCartItem" :items="items" ></Inventory>
       </div>
       <div class="col-sm-3">
-        <cart :items="cart" ></cart>
+        <cart @itemRemove="removeItem" :items="cart" ></cart>
       </div>
     </div>
   </div>
@@ -30,12 +30,7 @@ export default {
   data(){
     return {
      items: [],
-     cart: [{
-       id: 1,
-       title: 'test',
-       price: 10.50,
-       photo: "http://dummyimage.com/195x152.png/ff4444/ffffff"
-     }]
+     cart: [ ]
     }
   },
   mounted(){
@@ -44,6 +39,9 @@ export default {
   methods: {
     addCartItem(item){
       this.cart.push(item)
+    },
+    removeItem(index){
+      this.cart.splice(index, 1)
     }
   }
  }
